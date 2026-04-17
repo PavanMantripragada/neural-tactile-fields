@@ -1,5 +1,318 @@
 <!DOCTYPE html>
-<html>
-<head><title>Neural Tactile Fields</title></head>
-<body><h1>Neural Tactile Fields</h1></body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monocular Reconstruction of Neural Tactile Fields</title>
+  <meta
+    name="description"
+    content="Project page for Monocular Reconstruction of Neural Tactile Fields."
+  >
+  <link rel="stylesheet" href="web/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="#top">Monocular Reconstruction of Neural Tactile Fields</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#abstract">Abstract</a>
+        <a href="#media">Results</a>
+        <!-- <a href="#method">Method</a> -->
+        <a href="#links">Links</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-stack">
+        <div class="hero-copy hero-copy-centered">
+          <p class="eyebrow">Research Project Website</p>
+          <h1>Monocular Reconstruction of Neural Tactile Fields</h1>
+          <p class="hero-subtitle hero-subtitle-centered">
+            TL;DR: We introduce neural tactile fields that can be reconstructed from
+            a single RGB image, enabling interaction-aware robotic planning by
+            reasoning about physical contact costs rather than geometry alone.
+          </p>
+          <p class="author-line">
+            Pavan Mantripragada, Siddhant Deshmukh, Eadom Dessalene, Manas Desai, Yiannis Aloimonos
+          </p>
+          <p class="institution-line">University of Maryland, College Park</p>
+          <div class="hero-actions hero-actions-centered">
+            <a class="button button-primary" href="https://arxiv.org/abs/2602.12508">arXiv</a>
+            <a class="button button-secondary" href="#">Code</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaser" class="section section-tight">
+      <div class="container">
+        <div class="panel-card media-card media-card-wide">
+          <img
+            class="banner-image"
+            src="web/images/figures/banner.png"
+            alt="Banner image for Monocular Reconstruction of Neural Tactile Fields"
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="abstract" class="section">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2>Abstract</h2>
+        </div>
+        <p class="lead">
+          Robots operating in the real world must plan through environments that
+          deform, yield, and reconfigure under contact, requiring interaction-aware
+          3D representations that extend beyond static geometric occupancy. To
+          address this, we introduce neural tactile fields, a novel 3D representation
+          that maps spatial locations to the expected tactile response upon contact.
+          Our model predicts these neural tactile fields from a single monocular RGB
+          image, the first method to do so. When integrated with off-the-shelf path
+          planners, neural tactile fields enable robots to generate paths that avoid
+          high-resistance objects while deliberately routing through low-resistance
+          regions (e.g. foliage), rather than treating all occupied space as equally
+          impassable. Empirically, our learning framework improves volumetric 3D
+          reconstruction by 85.8% and surface reconstruction by 26.7% compared to
+          existing monocular 3D reconstruction methods.
+        </p>
+      </div>
+    </section>
+
+    <!--
+    <section id="video" class="section section-alt">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="eyebrow">Presentation</p>
+          <h2>Video</h2>
+        </div>
+        <div class="panel-card">
+          <div class="asset-frame asset-frame-video">
+            <p>Embed a YouTube talk or host a local MP4 here.</p>
+            <span>Suggested path: <code>web/videos/presentation/project-talk.mp4</code></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <section id="media" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Showcase</p>
+          <h2>Results</h2>
+        </div>
+        <div class="stack-grid">
+          <!--
+          <article class="panel-card">
+            <h3>Ground Truth Data</h3>
+            <div class="media-grid media-grid-single">
+              <div class="asset-frame">
+                <p>Ground-truth data video</p>
+                <span>web/videos/results/ground-truth-data.mp4</span>
+              </div>
+            </div>
+          </article>
+          -->
+          <article class="panel-card">
+            <h3>Model Predictions</h3>
+            <p>
+              Unlike existing monocular reconstruction methods, our network predicts
+              spatially varying contact response in addition to occupancy.
+            </p>
+            <div class="media-grid media-grid-single">
+              <div class="model-predictions-frame">
+                <img
+                  class="banner-image model-predictions-image"
+                  src="web/images/comparisons/reconstruction.png"
+                  alt="Model prediction reconstruction comparison"
+                >
+              </div>
+            </div>
+          </article>
+          <article class="panel-card">
+            <h3>Interaction Aware Planning</h3>
+            <p>
+              We enable safe planning through objects by adjusting tolerance to
+              anticipated contact response.
+            </p>
+            <div class="media-stack">
+              <p class="planning-row-title">Planning through foilage:</p>
+              <div class="media-grid">
+                <div class="asset-frame">
+                  <video class="result-video" controls autoplay muted loop playsinline preload="metadata">
+                    <source src="web/videos/results/plant_leaf_0.02.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>Lower Tolerance</p>
+                </div>
+                <div class="asset-frame">
+                  <video class="result-video" controls autoplay muted loop playsinline preload="metadata">
+                    <source src="web/videos/results/plant_leaf_0.2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>Higher Tolerance</p>
+                </div>
+                <div class="asset-frame">
+                  <video class="result-video" controls autoplay muted loop playsinline preload="metadata">
+                    <source src="web/videos/results/plant_stem_0.2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>Higher Tolerance</p>
+                </div>
+              </div>
+              <p class="planning-row-title">Planning through a heavy object:</p>
+              <div class="media-grid media-grid-two-up">
+                <div class="asset-frame">
+                  <video class="result-video" controls autoplay muted loop playsinline preload="metadata">
+                    <source src="web/videos/results/heavy_0.01.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>Lower Tolerance</p>
+                </div>
+                <div class="asset-frame">
+                  <video class="result-video" controls autoplay muted loop playsinline preload="metadata">
+                    <source src="web/videos/results/heavy_0.1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>Higher Tolerance</p>
+                </div>
+              </div>
+              <p class="planning-row-title">Planning through a light object:</p>
+              <div class="media-grid media-grid-two-up">
+                <div class="asset-frame">
+                  <video class="result-video" controls autoplay muted loop playsinline preload="metadata">
+                    <source src="web/videos/results/light_0.01.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>Lower Tolerance</p>
+                </div>
+                <div class="asset-frame">
+                  <video class="result-video" controls autoplay muted loop playsinline preload="metadata">
+                    <source src="web/videos/results/light_0.1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>Higher Tolerance</p>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="panel-card">
+            <h3>Zero-Shot Generalisation</h3>
+            <p>
+              Our method demonstrates robust generalization to out-of-domain
+              examples.
+            </p>
+            <div class="media-grid media-grid-single">
+              <div class="model-predictions-frame">
+                <img
+                  class="banner-image model-predictions-image"
+                  src="web/images/comparisons/zeroshot.png"
+                  alt="Zero-shot generalisation comparison"
+                >
+              </div>
+            </div>
+          </article>
+          <!--
+          <article class="panel-card">
+            <h3>Real-to-Sim</h3>
+            <div class="media-grid">
+              <div class="asset-frame">
+                <p>Real-world scene</p>
+                <span>web/videos/results/real-scene.mp4</span>
+              </div>
+              <div class="asset-frame">
+                <p>Simulation transfer</p>
+                <span>web/videos/results/real-to-sim.mp4</span>
+              </div>
+              <div class="asset-frame">
+                <p>Deployment outcome</p>
+                <span>web/videos/results/deployment.mp4</span>
+              </div>
+            </div>
+          </article>
+          -->
+        </div>
+      </div>
+    </section>
+
+    <!--
+    <section id="method" class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Pipeline</p>
+          <h2>Method</h2>
+        </div>
+        <div class="two-column">
+          <div class="panel-card">
+            <h3>Method Summary</h3>
+            <p>
+              Use this section for the core idea, tactile representation, training
+              setup, or inference pipeline.
+            </p>
+            <p>
+              Nerfies uses short, readable paragraphs and then relies on figures and
+              videos for the heavier visual storytelling. This scaffold is set up to
+              support that same flow.
+            </p>
+          </div>
+          <div class="panel-card">
+            <h3>Diagram</h3>
+            <div class="asset-frame asset-frame-tall">
+              <p>Insert pipeline figure or architecture diagram</p>
+              <span>web/images/figures/method-diagram.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <section id="links" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Resources</p>
+          <h2>Links</h2>
+        </div>
+        <div class="link-row">
+          <a class="link-card" href="https://arxiv.org/abs/2602.12508">arXiv</a>
+          <a class="link-card" href="#" aria-disabled="true">Code</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="citation" class="site-footer">
+    <div class="container narrow">
+      <div>
+        <div class="citation-header">
+          <h2>BibTeX</h2>
+          <button
+            class="copy-button"
+            type="button"
+            aria-label="Copy BibTeX to clipboard"
+            data-copy-target="bibtex-block"
+            title="Copy BibTeX"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 9.75A2.25 2.25 0 0 1 11.25 7.5h7.5A2.25 2.25 0 0 1 21 9.75v8.25a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 9 18V9.75Zm-6 3A2.25 2.25 0 0 1 5.25 10.5H6V18A3.75 3.75 0 0 0 9.75 21.75H15v.75A1.5 1.5 0 0 1 13.5 24h-8.25A2.25 2.25 0 0 1 3 21.75v-9Z"/>
+            </svg>
+          </button>
+        </div>
+        <pre id="bibtex-block" class="citation-block"><code>@article{mantripragada2026monocular,
+  title={Monocular Reconstruction of Neural Tactile Fields},
+  author={Mantripragada, Pavan and Deshmukh, Siddhanth and Dessalene, Eadom and Desai, Manas and Aloimonos, Yiannis},
+  journal={arXiv preprint arXiv:2602.12508},
+  year={2026}
+}</code></pre>
+      </div>
+    </div>
+  </footer>
+
+  <script src="web/js/main.js"></script>
+</body>
 </html>
